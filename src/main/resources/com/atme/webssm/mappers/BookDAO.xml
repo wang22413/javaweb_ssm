@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.atme.webssm.mappers.BookDAO">
+
+    <!--List<Book> getBookList(Integer minPrice , Integer maxPrice);-->
+    <select id="getBookList" resultType="Book">
+        select * from t_book where 1=1
+        <if test="minPrice != '' and minPrice != null">
+         and price > minPrice
+        </if>
+        <if test="maxPrice != '' and maxPrice != null">
+            and price <![CDATA[<]]> minPrice
+        </if>
+    </select>
+
+    <!-- Book getBook(@Param("id") Integer id);-->
+    <select id="getBook" resultType="book">
+        select * from t_book where id = #{id}
+    </select>
+
+</mapper>
