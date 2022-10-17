@@ -135,8 +135,7 @@
             <div class="list-header">
               <div class="title">图书列表</div>
               <div class="price-search">
-                <form th:action="@{/book.do}" method="post">
-                  <input type="hidden" name="oper" value="search">
+                <form th:action="@{/book}" method="post">
                   <span>价格:</span>
                   <input type="text" name="minPrice" th:value="${session.minPrice}">
                   <span>元-</span>
@@ -325,7 +324,7 @@
           </div>
         </div>
         <div class="down">
-          尚硅谷书城.Copyright ©2015
+          尚硅谷书城.Copyright ©2022
         </div>
       </div>
      

@@ -9,10 +9,10 @@
     <select id="getBookList" resultType="Book">
         select * from t_book where 1=1
         <if test="minPrice != '' and minPrice != null">
-         and price > minPrice
+         and price > #{minPrice}
         </if>
         <if test="maxPrice != '' and maxPrice != null">
-            and price <![CDATA[<]]> minPrice
+            and price <![CDATA[<]]> #{maxPrice}
         </if>
     </select>
 
