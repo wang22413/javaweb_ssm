@@ -146,7 +146,7 @@
               </div>
             </div>
             <div class="list-content">
-              <div class="list-item" th:each="book : ${session.bookList}" th:object="${book}">
+              <div class="list-item" th:each="book : ${session.bookList.list}" th:object="${book}">
                 <img th:src="@{|/static/uploads/*{bookImg }|}" alt="">
                 <p th:text="|书名:*{bookName}|"></p>
                 <p th:text="|作者:*{author}|">余华</p>
@@ -157,17 +157,14 @@
               </div>
             </div>
             <div class="list-footer">
-                <div>首页</div>
-                <div>上一页</div>
-                <ul><li class="active">1</li><li>2</li><li>3</li></ul>
-                <div>下一页</div>
-                <div>末页</div>
-                <span>共10页</span>
-                <span>30条记录</span>
-                <span>到第</span>
-                <input type="text">
-                <span>页</span>
-                <button>确定</button>
+              <a th:if="${session.bookList.hasPreviousPage}" th:href="@{/book/page/1}">首页</a>
+              <a th:if="${session.bookList.hasPreviousPage}" th:href="@{'/book/page/'+${session.bookList.prePage}}">上一页</a>
+              <span th:each="num : ${session.bookList.navigatepageNums}">
+              <a th:if="${session.bookList.pageNum == num}" style="color: red" th:href="@{'/book/page/'+${num}}" th:text="'['+${num}+']'"></a>
+              <a th:if="${session.bookList.pageNum != num}" th:href="@{'/book/page/'+${num}}" th:text="${num}"></a>
+              </span>
+              <a th:if="${session.bookList.hasNextPage}" th:href="@{'/book/page/'+${session.bookList.nextPage}}">下一页</a>
+              <a th:if="${session.bookList.hasNextPage}" th:href="@{'/book/page/'+${session.bookList.pages}}">尾页</a>
             </div>
           </div>
         </div>
