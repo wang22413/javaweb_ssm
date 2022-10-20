@@ -4,6 +4,7 @@ import com.atme.webssm.pojo.*;
 import com.atme.webssm.service.CartItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -47,6 +48,12 @@ public class CartController {
     @RequestMapping("/deleteCart/{id}")
     public String deleteCart(@PathVariable("id") Integer id) {
         cartItemService.deleteCart(id);
+        return "redirect:/cart";
+    }
+
+    @GetMapping("/clearCart")
+    public String clearCart() {
+        cartItemService.deleteCart(null);
         return "redirect:/cart";
     }
 

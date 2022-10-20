@@ -22,7 +22,10 @@
 
     <!--void delCartItem(CartItem cartItem);-->
     <delete id="delCartItem">
-        delete from t_cart_item where id = #{id}
+        delete from t_cart_item where 1=1
+        <if test="id != '' and id != null">
+            and id = #{id}
+        </if>
     </delete>
 
 </mapper>

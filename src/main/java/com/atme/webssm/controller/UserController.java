@@ -15,6 +15,8 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import static com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY;
+
 @Controller
 public class UserController {
 
@@ -44,7 +46,7 @@ public class UserController {
 
     @RequestMapping(value = "/user/regist",method = RequestMethod.POST)
     public String addUser(String verifyCode , HttpSession session, HttpServletResponse response, User user) throws IOException {
-        Object key = session.getAttribute("KAPTCHA_SESSION_KEY");
+        Object key = session.getAttribute(KAPTCHA_SESSION_KEY);
         if (verifyCode!=null && key.equals(verifyCode)) {
             user.setRole(0);
             userDAO.addUser(user);
